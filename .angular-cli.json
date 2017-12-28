@@ -19,7 +19,9 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "cash",
       "styles": [
-        "styles.scss"
+        "styles.scss",
+        "./assets/css/vendor.css",
+        "./assets/css/theme.css"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",
