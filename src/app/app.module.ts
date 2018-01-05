@@ -5,10 +5,14 @@ import {HttpModule} from '@angular/http';
 import {AppComponent} from './app.component';
 import {AuthModule} from './auth/auth.module';
 import {AppRoutingModule} from './app-routing.module';
+import { TreeComponent } from './tree/tree.component';
+import { TreeViewComponent } from './tree/tree-view/tree-view.component';
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
+        TreeComponent,
+        TreeViewComponent
     ],
     imports: [
         BrowserModule,
