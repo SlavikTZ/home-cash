@@ -1,8 +1,6 @@
 <ul>
   <li *ngFor="let node of tree">
-    <span>{{ node.name }}</span>
-    <div *ngIf="node.children">
-      <tree-view [tree]="node.children"></tree-view>
-    </div>
+    <span *ngIf="node.children"><i (click)="toggle(node)" [class]="'point'">{{node.expand?"-":"+"}}</i></span><span>{{ node.name }}</span>
+      <tree-view *ngIf="node.children && node.expand" [tree]="node.children"></tree-view>
   </li>
 </ul>

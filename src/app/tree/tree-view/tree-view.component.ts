@@ -12,4 +12,7 @@ export class TreeViewComponent {
 
     @Input('tree') tree;
 
+    toggle(node) {
+       node.expand = node.expand ? false : true;
+    }
 }
