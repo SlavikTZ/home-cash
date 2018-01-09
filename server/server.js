@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const configDB = require('./config/database');
 const bodyParser = require('body-parser');
 const userRoutes = require('./routes/userRoutes');
+const nodeRoutes = require('./Node/NodeRoutes');
 const app = express();
 
 
@@ -21,6 +22,7 @@ app.use(express.static(`${__dirname}/../dist/`));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use('/api/users', userRoutes);
+app.use('/api/nodes', nodeRoutes);
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, '../dist/index.html'));
 });
