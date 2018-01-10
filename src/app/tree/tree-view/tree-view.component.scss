@@ -1,4 +1,22 @@
-ul{
+ul {
   list-style-type: none;
   padding-left: 15px;
+
+  .point {
+    > .node-name {
+      display: inline;
+    }
+    > .node-field {
+      display: none;
+    }
+
+    &.editable {
+      > .node-name {
+        display: none;
+      }
+      > .node-field {
+        display: inline;
+      }
+    }
+  }
 }

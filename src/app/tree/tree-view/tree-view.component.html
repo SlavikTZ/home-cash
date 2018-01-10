@@ -1,9 +1,16 @@
 <ul>
-  <li *ngFor="let node of tree" (click)="toggle($event, node)" class="point">
-    <span *ngIf="node.isChildren">
-      <i>{{node.expand?"-":"+"}}</i>
+
+  <li *ngFor="let node of tree">
+    <span (click)="toggle($event, node)" (dblclick)="rename($event, node)" class="point"
+          [ngClass]="!node.isRename ? '' : 'editable'">
+      <span *ngIf="node.isChildren">
+        <i>{{node.expand?"-":"+"}}</i>
+      </span><span *ngIf="!node.isChildren">
+        <i>*</i>
+      </span>
+    <span class="node-name">{{ node.name }}</span>
+    <input class="node-field" [(ngModel)]="node.name" autofocus (blur)="saveNode(node)" (keyup)="saveNodeKey($event, node)">
     </span>
-    <span>{{ node.name }}</span>
-      <tree-view *ngIf="node.children && node.expand" [tree]="node.children"></tree-view>
+    <tree-view *ngIf="node.children && node.expand" [tree]="node.children"></tree-view>
   </li>
 </ul>

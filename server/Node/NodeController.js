@@ -85,11 +85,7 @@ module.exports = {
                     message: 'No such Node'
                 });
             }
-
-            Node.parent_id = req.body.parent_id ? req.body.parent_id : Node.parent_id;
             Node.name = req.body.name ? req.body.name : Node.name;
-            Node.isChildren = req.body.isChildren ? req.body.isChildren : Node.isChildren;
-
             Node.save(function (err, Node) {
                 if (err) {
                     return res.status(500).json({
@@ -97,7 +93,6 @@ module.exports = {
                         error: err
                     });
                 }
-
                 return res.json(Node);
             });
         });

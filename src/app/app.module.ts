@@ -8,6 +8,7 @@ import {AppRoutingModule} from './app-routing.module';
 import { TreeComponent } from './tree/tree.component';
 import { TreeViewComponent } from './tree/tree-view/tree-view.component';
 import {TreeService} from "./tree/tree.service";
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
     declarations: [
@@ -20,6 +21,7 @@ import {TreeService} from "./tree/tree.service";
         HttpModule,
         AuthModule,
         AppRoutingModule,
+        FormsModule
     ],
     providers: [TreeService],
     bootstrap: [AppComponent]

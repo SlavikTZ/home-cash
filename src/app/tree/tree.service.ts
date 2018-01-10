@@ -21,4 +21,10 @@ export class TreeService {
                 return res.json();
             });
     }
+
+    save(node) {
+        return this.http.put(`${this.host}/api/nodes/${node._id}`, {name: node.name}).map((res: Response) => {
+            return res.json();
+        });
+    }
 }

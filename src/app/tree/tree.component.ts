@@ -9,7 +9,7 @@ import {TreeService} from './tree.service';
 })
 export class TreeComponent implements OnInit {
 
-    public tree;
+    public tree = [];
 
     constructor(private serviceTree: TreeService) {
     }
@@ -17,21 +17,8 @@ export class TreeComponent implements OnInit {
     ngOnInit() {
         this.serviceTree.getRoot()
             .subscribe((root) => {
-                this.tree = root;
+                this.tree.push(root);
             });
-    }
-
-    toggle() {
-        if (this.tree.isChildren && this.tree.expand === undefined) {
-            this.tree.expand = true;
-            this.serviceTree
-                .getChildren(this.tree._id)
-                .subscribe((nodes) => {
-                    this.tree.children = nodes;
-                });
-        } else {
-            this.tree.expand = !this.tree.expand;
-        }
     }
 
 }
