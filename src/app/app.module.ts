@@ -7,6 +7,7 @@ import {AuthModule} from './auth/auth.module';
 import {AppRoutingModule} from './app-routing.module';
 import { TreeComponent } from './tree/tree.component';
 import { TreeViewComponent } from './tree/tree-view/tree-view.component';
+import {TreeService} from "./tree/tree.service";
 
 @NgModule({
     declarations: [
@@ -20,7 +21,7 @@ import { TreeViewComponent } from './tree/tree-view/tree-view.component';
         AuthModule,
         AppRoutingModule,
     ],
-    providers: [],
+    providers: [TreeService],
     bootstrap: [AppComponent]
 })
 export class AppModule {

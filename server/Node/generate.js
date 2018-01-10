@@ -6,7 +6,7 @@ require('../config/connectionDB');
 let e = new EventEmmiter;
 var i = 0;
 e.on('addNode', () => {
-    if (i < 200) {
+    if (i < 10000) {
         i++;
         Tree.find({}, (err, nodes) => {
             var node = {};
@@ -40,7 +40,6 @@ e.on('addNode', () => {
                 }
                 if(parent){
                     Tree.count({parent_id:parent._id}, (err, count)=>{
-                        console.log(count);
                     })
                 }
                 e.emit('addNode');

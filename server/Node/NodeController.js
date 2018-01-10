@@ -27,6 +27,9 @@ module.exports = {
      */
     show: function (req, res) {
         var id = req.params.id;
+        if (id === 'root') {
+            id = null;
+        }
         NodeModel.find({parent_id: id}, function (err, Nodes) {
             if (err) {
                 return res.status(500).json({
@@ -34,12 +37,12 @@ module.exports = {
                     error: err
                 });
             }
-            if (Nodes.length==0) {
+            if (Nodes.length == 0) {
                 return res.status(404).json({
                     message: 'No such Node'
                 });
             }
-            return res.json(Nodes);
+            return res.status(200).json(Nodes);
         });
     },
 

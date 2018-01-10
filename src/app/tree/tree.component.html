@@ -1,3 +1,7 @@
-<div id="myTree">{{tree.name}}
-<tree-view [tree]="tree.children"></tree-view>
+<div id="myTree" *ngIf="tree" (click)="toggle()" class="point">
+  <span *ngIf="tree.isChildren">
+    <i>{{tree.expand?"-":"+"}}</i>
+  </span>
+  {{tree.name}}
+  <tree-view [tree]="tree.children" *ngIf="tree.expand"></tree-view>
 </div>
