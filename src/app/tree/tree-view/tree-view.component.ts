@@ -60,4 +60,10 @@ export class TreeViewComponent {
             this.saveNode(node);
         }
     }
+
+    addModal($event){
+        event.preventDefault();
+        this.dbClickFlag = true;
+        console.log(event);
+    }
 }

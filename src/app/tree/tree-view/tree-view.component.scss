@@ -1,10 +1,15 @@
 ul {
   list-style-type: none;
   padding-left: 15px;
-
-  .point {
+  >li{
+    margin-top: 8px;
+  }
+  span.point {
     > .node-name {
       display: inline;
+      border: 1px solid green;
+      padding: 0 10px;
+      box-shadow: #2b542c 2px 2px 4px;
     }
     > .node-field {
       display: none;
