@@ -1,5 +1,40 @@
 /* You can add global styles to this file, and also import other style files */
 
-.point{
-  cursor: pointer;
+.point {
+    cursor: pointer;
+}
+
+#myTree {
+    ul {
+        padding: 2px 0 5px 40px;
+        margin-top: 10px;
+        overflow: hidden;
+
+        ul {
+            li {
+                position: relative;
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    left: -26px;
+                    width: 2px;
+                    background: #bbb;
+                    height: 10000px;
+                    top: -9987px;
+                }
+
+                &::after {
+                    content: '';
+                    display: block;
+                    position: absolute;
+                    height: 2px;
+                    background: #bbbbbb;
+                    left: -25px;
+                    width: 18px;
+                    top: 11px;
+                }
+            }
+        }
+    }
 }
