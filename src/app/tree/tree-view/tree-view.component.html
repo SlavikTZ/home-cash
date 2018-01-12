@@ -1,13 +1,14 @@
 <ul>
 
   <li *ngFor="let node of tree">
-    <span (click)="toggle($event, node)" (dblclick)="rename($event, node)"  (contextmenu)="addModal($event, node)" class="point"
+    <span (click)="toggle($event, node)" (dblclick)="rename($event, node)"  (contextmenu)="addModal($event, node)" class="point li-content-wrapper"
           [ngClass]="!node.isRename ? '' : 'editable'">
       <span *ngIf="node.isChildren">
-        <i>{{node.expand?"-":"+"}}</i>
-      </span><span *ngIf="!node.isChildren">
-        <i>*</i>
+        <i class="state-indicator" [ngClass]="{'opened': node.expand, 'closed': !node.expand}"><span></span></i>
       </span>
+      <!--<span *ngIf="!node.isChildren">-->
+        <!--<i>*</i>-->
+      <!--</span>-->
     <span class="node-name">{{ node.name }}</span>
     <input class="node-field" [(ngModel)]="node.name" autofocus (blur)="saveNode(node)"
            (keyup)="saveNodeKey($event, node)">
