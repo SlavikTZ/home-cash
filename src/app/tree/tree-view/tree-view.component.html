@@ -1,7 +1,7 @@
 <ul>
 
   <li *ngFor="let node of tree">
-    <span (click)="toggle($event, node)" (dblclick)="rename($event, node)"  (contextmenu)="addModal($event)" class="point"
+    <span (click)="toggle($event, node)" (dblclick)="rename($event, node)"  (contextmenu)="addModal($event, node)" class="point"
           [ngClass]="!node.isRename ? '' : 'editable'">
       <span *ngIf="node.isChildren">
         <i>{{node.expand?"-":"+"}}</i>

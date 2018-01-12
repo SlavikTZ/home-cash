@@ -61,9 +61,10 @@ export class TreeViewComponent {
         }
     }
 
-    addModal($event){
+    addModal($event, node) {
         event.preventDefault();
-        this.dbClickFlag = true;
-        console.log(event);
+        this.serviceTree.add(node).subscribe((addNode) => {
+
+        });
     }
 }

@@ -110,7 +110,21 @@ module.exports = {
                     error: err
                 });
             }
+            console.log(Node);
             return res.status(204).json();
         });
-    }
+    },
+    test: function (req, res) {
+        var id = req.params.id;
+        NodeModel.findAllChildren(id, function (err, arr) {
+            if (err) {
+                return res.status(500).json({
+                    message: 'Error when deleting the Node.',
+                    error: err
+                });
+            }
+            console.log(Node);
+            return res.status(204).json();
+        });
+    },
 };

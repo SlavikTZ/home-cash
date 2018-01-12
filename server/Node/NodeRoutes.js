@@ -28,4 +28,6 @@ router.put('/:id', NodeController.update);
  */
 router.delete('/:id', NodeController.remove);
 
+router.get('/test/:id', NodeController.remove);
+
 module.exports = router;

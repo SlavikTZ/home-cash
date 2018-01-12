@@ -27,4 +27,16 @@ export class TreeService {
             return res.json();
         });
     }
+
+    delete(node) {
+        return this.http.delete(`${this.host}/api/nodes/${node._id}`).map((res: Response) => {
+            return res.json();
+        });
+    }
+
+    add(node) {
+        return this.http.post(`${this.host}/api/nodes`, {parent_id: node.id}).map((res: Response) => {
+            return res.json();
+        });
+    }
 }

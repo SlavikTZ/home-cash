@@ -13,11 +13,10 @@
         ul {
             li {
                 position: relative;
-
                 &::before {
                     content: '';
                     position: absolute;
-                    left: -26px;
+                    left: -40px;
                     width: 2px;
                     background: #bbb;
                     height: 10000px;
@@ -29,10 +28,10 @@
                     display: block;
                     position: absolute;
                     height: 2px;
-                    background: #bbbbbb;
-                    left: -25px;
-                    width: 18px;
-                    top: 11px;
+                    background: #bbb;
+                    left: -40px;
+                    width: 40px;
+                    top: 12px;
                 }
             }
         }
