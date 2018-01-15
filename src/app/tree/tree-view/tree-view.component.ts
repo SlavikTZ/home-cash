@@ -39,6 +39,9 @@ export class TreeViewComponent {
         event.stopPropagation();
         event.preventDefault();
         let input = event.target.parentNode.children.item(2);
+        if (!input) {
+            input = event.target.parentNode.children.item(1);
+        }
         this.dbClickFlag = true;
         node.isRename = true;
         this.renameField = node.name;
@@ -61,10 +64,37 @@ export class TreeViewComponent {
         }
     }
 
-    addModal($event, node) {
+    addModal(event, node) {
         event.preventDefault();
+        if (event.ctrlKey) {
+            this.delete(node);
+            return;
+        }
         this.serviceTree.add(node).subscribe((addNode) => {
+            if (!node.isChildren) {
+                node.children = [];
+                node.isChildren = true;
+            }
+            node.expand = true;
+            addNode.isRename = true;
+            node.children.push(addNode);
 
+        });
+    }
+
+    delete(node) {
+        this.serviceTree.delete(node).subscribe((result) => {
+            var childrenNew = [];
+            if (this.tree.length < 2) {
+                this.tree = [];
+                return;
+            }
+            this.tree.forEach((nextNode) => {
+                if (nextNode._id !== node._id) {
+                    childrenNew.push(nextNode);
+                }
+            });
+            this.tree = childrenNew;
         });
     }
 }

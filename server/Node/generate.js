@@ -6,7 +6,7 @@ require('../config/connectionDB');
 let e = new EventEmmiter;
 var i = 0;
 e.on('addNode', () => {
-    if (i < 200) {
+    if (i < 10) {
         i++;
         Tree.find({}, (err, nodes) => {
             var node = {};
@@ -47,6 +47,7 @@ e.on('addNode', () => {
         });
 
     }
+    console.log(i);
     return false;
 });
 

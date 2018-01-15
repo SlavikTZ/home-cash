@@ -52,20 +52,25 @@ module.exports = {
     create: function (req, res) {
         var Node = new NodeModel({
             parent_id: req.body.parent_id,
-            name: req.body.name,
-            isChildren: req.body.isChildren
-
+            name: 'New Node',
+            isChildren: false
         });
+        Node.save()
+            .then((node) => {
+                NodeModel.findOne({_id: req.body.parent_id})
+                    .update({$set: {isChildren: true}})
+                    .then((parentNode) => {
+                        return res.status(201).json(node);
+                    })
+                    .catch((err) => conle.log(err));
 
-        Node.save(function (err, Node) {
-            if (err) {
+            })
+            .catch((err) => {
                 return res.status(500).json({
                     message: 'Error when creating Node',
                     error: err
                 });
-            }
-            return res.status(201).json(Node);
-        });
+            });
     },
 
     /**
@@ -103,28 +108,7 @@ module.exports = {
      */
     remove: function (req, res) {
         var id = req.params.id;
-        NodeModel.findByIdAndRemove(id, function (err, Node) {
-            if (err) {
-                return res.status(500).json({
-                    message: 'Error when deleting the Node.',
-                    error: err
-                });
-            }
-            console.log(Node);
-            return res.status(204).json();
-        });
-    },
-    test: function (req, res) {
-        var id = req.params.id;
-        NodeModel.findAllChildren(id, function (err, arr) {
-            if (err) {
-                return res.status(500).json({
-                    message: 'Error when deleting the Node.',
-                    error: err
-                });
-            }
-            console.log(Node);
-            return res.status(204).json();
-        });
-    },
+        console.log(id);
+        return res.status(204).json();
+    }
 };

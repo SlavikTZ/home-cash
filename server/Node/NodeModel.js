@@ -13,10 +13,16 @@ NodeSchema.statics.findChildren = function (id, cb) {
 NodeSchema.statics.addNode = function (id, cb) {
 }
 
-NodeSchema.pre('remove', (next) => {
-    console.log(this);
+NodeSchema.pre('remove', function(next){
+    console.log(this.isChildren);
     if (this.isChildren) {
-        NodeSchema.remove({parent_id: this._id}).exec();
+        NodeSchema.find({parent_id: this._id}).then((nodes) => {
+            console.log(nodes);
+            nodes.forEach((node)=>{
+
+             node.remove().exec();
+           })
+        });
     }
     next();
 });

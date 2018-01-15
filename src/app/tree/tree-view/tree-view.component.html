@@ -10,7 +10,7 @@
         <!--<i>*</i>-->
       <!--</span>-->
     <span class="node-name">{{ node.name }}</span>
-    <input class="node-field" [(ngModel)]="node.name" autofocus (blur)="saveNode(node)"
+    <input class="node-field" [(ngModel)]="node.name" (blur)="saveNode(node)"
            (keyup)="saveNodeKey($event, node)">
     </span>
     <tree-view *ngIf="node.children && node.expand" [tree]="node.children"></tree-view>
