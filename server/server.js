@@ -26,7 +26,7 @@ app.use('/api/nodes', nodeRoutes);
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, '../dist/index.html'));
 });
-const port = 3000;
+const port = 3001;
 app.listen(port, () => {
     console.log(`Server runing on port:${port}`);
 });
