@@ -5,25 +5,18 @@ import {HttpModule} from '@angular/http';
 import {AppComponent} from './app.component';
 import {AuthModule} from './auth/auth.module';
 import {AppRoutingModule} from './app-routing.module';
-import { TreeComponent } from './tree/tree.component';
-import { TreeViewComponent } from './tree/tree-view/tree-view.component';
-import {TreeService} from "./tree/tree.service";
-import {FormsModule} from '@angular/forms';
 
 @NgModule({
     declarations: [
-        AppComponent,
-        TreeComponent,
-        TreeViewComponent
+        AppComponent
     ],
     imports: [
         BrowserModule,
         HttpModule,
         AuthModule,
         AppRoutingModule,
-        FormsModule
     ],
-    providers: [TreeService],
+    providers: [],
     bootstrap: [AppComponent]
 })
 export class AppModule {

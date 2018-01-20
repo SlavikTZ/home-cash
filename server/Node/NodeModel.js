@@ -7,24 +7,24 @@ var NodeSchema = new Schema({
     'isChildren': Boolean
 }, {versionKey: false});
 
-NodeSchema.statics.findChildren = function (id, cb) {
-    return this.find({parent_id: id}, cb);
-};
-NodeSchema.statics.addNode = function (id, cb) {
-}
-
-NodeSchema.pre('remove', function(next){
-    console.log(this.isChildren);
+NodeSchema.methods.del = async function () {
     if (this.isChildren) {
-        NodeSchema.find({parent_id: this._id}).then((nodes) => {
-            console.log(nodes);
-            nodes.forEach((node)=>{
-
-             node.remove().exec();
-           })
-        });
+        var nodes = await this.model('Node').find({parent_id: this._id});
+        for (let i = 0; i < nodes.length; i++) {
+            await nodes[i].del();
+        }
     }
-    next();
-});
+    await this.model('Node').remove({_id: this._id});
+    return;
+
+};
+
+NodeSchema.methods.parent = function () {
+    return this.model('Node').findOne({_id: this.parent_id});
+};
+
+NodeSchema.methods.countChildren = function () {
+    return this.model('Node').find({parent_id: this.id}).count();
+};
 
 module.exports = mongoose.model('Node', NodeSchema);

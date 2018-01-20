@@ -109,9 +109,23 @@ module.exports = {
     /**
      * NodeController.remove()
      */
-    remove: function (req, res) {
-        var id = req.params.id;
-        console.log(id);
-        return res.status(204).json();
+    remove: async (req, res, next) => {
+        const id = req.params.id;
+        const node = await NodeModel.findOne({_id: id});
+        const parent = await node.parent();
+        if (node) {
+            console.log(node._id);
+            //const countChildren = await NodeModel.countChildren(node.parent_id);
+            await node.del();
+            let countChildren = await parent.countChildren();
+            console.log(countChildren);
+            /*if (countChildren < 2) {
+                await
+            }*/
+            return res.status(204).json();
+        }
+
+        return res.status(400).json();
+
     }
 };

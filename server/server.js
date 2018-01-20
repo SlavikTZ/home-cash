@@ -1,4 +1,3 @@
-
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
@@ -15,7 +14,7 @@ mongoose.connect(configDB.uri, {useMongoClient: true}, (err) => {
         console.log("Cloud NOT connect to database")
     } else {
         console.log(`Connected to database: ${configDB.db}`);
-}
+    }
 });
 
 app.use(express.static(`${__dirname}/../dist/`));

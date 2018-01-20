@@ -3,7 +3,7 @@ import {Http, Response} from '@angular/http';
 
 @Injectable()
 export class TreeService {
-    private host = `http://18.196.121.208:3001`;
+    private host = `http://35.156.30.222:3001`;
 
     constructor(private http: Http) {
     }
