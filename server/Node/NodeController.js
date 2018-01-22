@@ -114,14 +114,14 @@ module.exports = {
         const node = await NodeModel.findOne({_id: id});
         const parent = await node.parent();
         if (node) {
-            console.log(node._id);
-            //const countChildren = await NodeModel.countChildren(node.parent_id);
+
             await node.del();
             let countChildren = await parent.countChildren();
-            console.log(countChildren);
-            /*if (countChildren < 2) {
-                await
-            }*/
+
+            if (countChildren===0) {
+                parent.isChildren = false;
+                await parent.save();
+            }
             return res.status(204).json();
         }
 
